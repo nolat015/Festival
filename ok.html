@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Festival</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+
+<style>
+body {
+    background: linear-gradient(135deg, #ff4da6, #ff99cc, #ff66b2);
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+/* 🔘 BOTONES */
+.botones {
+    position: sticky;
+    top: 0;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    padding: 10px;
+    background: rgba(0,0,0,0.7);
+    z-index: 100;
+}
+
+.botones button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 10px;
+    background: #fff200;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+/* 🎤 SECCIONES */
+.seccion {
+    display: none;
+    padding: 20px;
+}
+
+.activo {
+    display: block;
+}
+
+/* 🎤 TITULO DIA */
+.seccion > h2:first-child {
+    font-size: 60px;
+    color: white;
+    text-align: center;
+}
+
+/* SUBTITULOS */
+h2 {
+    font-size: 30px;
+    text-align: center;
+    color: black;
+}
+
+/* GRID */
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 15px;
+}
+
+/* CARDS */
+.card {
+    background: linear-gradient(135deg, #fff200, #ffd000);
+    border-radius: 15px;
+    text-align: center;
+    padding: 10px;
+}
+
+.card img {
+    width: 100%;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.card p {
+    font-size: 14px;
+    margin: 5px 0 0;
+}
+</style>
+</head>
+
+<body>
+
+<!-- 🔘 BOTONES -->
+<div class="botones">
+    <button onclick="mostrarDia(1)">Día 1</button>
+    <button onclick="mostrarDia(2)">Día 2</button>
+    <button onclick="mostrarDia(3)">Día 3</button>
+    <button onclick="mostrarDia(4)">Día 4</button>
+</div>
+
+<!-- DÍA 1 -->
+<div id="dia1" class="seccion activo">
+<h2>🎤 Día 1</h2>
+
+<h2>🇪🇸 Española</h2>
+<div class="grid">
+<div class="card"><img src="https://picsum.photos/200?1"><p>Taburete</p></div>
+<div class="card"><img src="https://picsum.photos/200?2"><p>Dani Fernández</p></div>
+<div class="card"><img src="https://picsum.photos/200?3"><p>Antonio Orozco</p></div>
+<div class="card"><img src="https://picsum.photos/200?4"><p>Celtas Cortos</p></div>
+</div>
+
+<h2>🌍 Pop</h2>
+<div class="grid">
+<div class="card"><img src="https://picsum.photos/200?5"><p>Bastille</p></div>
+<div class="card"><img src="https://picsum.photos/200?6"><p>KSI</p></div>
+</div>
+</div>
+
+<!-- DÍA 2 -->
+<div id="dia2" class="seccion">
+<h2>🎤 Día 2</h2>
+
+<h2>🇪🇸 Española</h2>
+<div class="grid">
+<div class="card"><img src="https://picsum.photos/200?20"><p>Estopa</p></div>
+<div class="card"><img src="https://picsum.photos/200?21"><p>Dani Martín</p></div>
+</div>
+</div>
+
+<!-- DÍA 3 -->
+<div id="dia3" class="seccion">
+<h2>🚀 Día 3</h2>
+
+<h2>🌍 Pop</h2>
+<div class="grid">
+<div class="card"><img src="https://picsum.photos/200?40"><p>Dua Lipa</p></div>
+<div class="card"><img src="https://picsum.photos/200?41"><p>Eminem</p></div>
+</div>
+</div>
+
+<!-- DÍA 4 -->
+<div id="dia4" class="seccion">
+<h2>👑 Día 4</h2>
+
+<h2>🌍 Pop</h2>
+<div class="grid">
+<div class="card"><img src="https://picsum.photos/200?60"><p>Taylor Swift</p></div>
+<div class="card"><img src="https://picsum.photos/200?61"><p>Coldplay</p></div>
+</div>
+</div>
+
+<script>
+function mostrarDia(num) {
+    document.querySelectorAll('.seccion').forEach(sec => {
+        sec.classList.remove('activo');
+    });
+    document.getElementById('dia' + num).classList.add('activo');
+}
+</script>
+
+</body>
+</html>
