@@ -5,103 +5,111 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mi Página Web</title>
 
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Página Web</title>
+
     <style>
-    	body {
-        	background: linear-gradient(135deg, #fff200, #ffd000, #ffb300);
-        	color: white;
-        	font-family: "Comic Sans MS", cursive, sans-serif;
-        	margin: 0;
-        	min-height: 100vh;
-    	}
-	.festival {
-    		padding: 40px 20px;
-	}
+        body {
+            background: linear-gradient(135deg, #fff200, #ffd000, #ffb300);
+            color: #333;
+            font-family: "Comic Sans MS", cursive, sans-serif;
+            margin: 0;
+            min-height: 100vh;
+        }
 
-	h2 {
-    		text-align: center;
-    		margin: 40px 0 20px;
-    		color: pink;
-    		font-size: 32px;
-    		text-transform: uppercase; /* letras mayúsculas */
-    		letter-spacing: 2px; /* espacio entre letras */
-    		text-shadow:
-        		0 0 10px #ff4da6,   /* glow rosa */
-        		0 0 20px #ff4da6,   /* glow rosa intenso */
-        		0 0 30px #8a2be2,   /* glow morado */
-        		0 0 40px #8a2be2;   /* glow morado intenso */
-    		transition: 0.3s;
-	}
-	.grid {
-    		display: grid;
-    		grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); /* 👈 más grandes */
-    		gap: 25px; /* más separación */
-	}
+        .festival {
+            padding: 40px 20px;
+        }
 
-	.card {
-    		background: linear-gradient(135deg, #ff4da6, #ff99cc); /* 👈 igual que el de arriba */
-    		border-radius: 20px;
-    		text-align: center;
-    		padding: 15px;
-    		box-shadow: 0 0 20px rgba(255, 105, 180, 0.7); /* glow rosa */
-    		transition: transform 0.2s;
-	}
+        /* 👇 SEPARACIÓN ENTRE SECCIONES */
+        .seccion {
+            margin-bottom: 100px; /* 👈 AQUÍ está la separación real */
+        }
 
-	.card:hover {
-    		transform: scale(1.05); /* 👈 efecto guapo */
-	}
+        h2 {
+            text-align: center;
+            margin: 40px 0 20px;
+            color: #ff8c00;
+            font-size: 32px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-shadow:
+                0 0 10px #ffae00,
+                0 0 20px #ffae00,
+                0 0 30px #ff8c00,
+                0 0 40px #ff8c00;
+        }
 
-	.card img {
-    		width: 100%;
-    		height: 180px; /* 👈 tamaño fijo */
-    		object-fit: cover; /* 👈 evita deformaciones */
-    		border-radius: 15px;
-	}
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 25px;
+        }
 
-	.card p {
-    		margin: 12px 0 0;
-    		font-size: 18px;
-    		color: white;
-    		font-weight: bold;
-	}
+        .card {
+            background: linear-gradient(135deg, #ffb300, #ffd54f);
+            border-radius: 20px;
+            text-align: center;
+            padding: 15px;
+            box-shadow: 0 0 20px rgba(255, 179, 0, 0.7);
+            transition: transform 0.2s;
+        }
 
-    	.header {
-        	width: 100%;
-        	background-color: rgba(0, 0, 0, 0.5);
-        	text-align: center;
-        	padding: 30px;
-        	border-radius: 0 0 20px 20px;
-        	box-sizing: border-box;
-   	}
+        .card img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            border-radius: 15px;
+        }
 
-    	h1 {
-        	font-size: 60px;
-        	margin: 0;
-        	text-shadow: 0 0 15px rgba(255, 255, 255, 0.7);
-    	}
+        .card p {
+            margin: 12px 0 0;
+            font-size: 18px;
+            color: white;
+            font-weight: bold;
+        }
 
-    	.contenido {
-        	display: flex;
-        	justify-content: center;
-        	align-items: center;
+        .header {
+            width: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            text-align: center;
+            padding: 30px;
+            border-radius: 0 0 20px 20px;
+            box-sizing: border-box;
+        }
 
-        	min-height: calc(100vh - 120px);
-        	padding: 40px;
-        	box-sizing: border-box;
-    	}
+        h1 {
+            font-size: 60px;
+            margin: 0;
+            color: white;
+            text-shadow: 0 0 15px rgba(255, 255, 255, 0.7);
+        }
 
-    	.caja-texto {
-        	background: linear-gradient(135deg, #ff4da6, #ff99cc);
-        	padding: 25px;
-        	border-radius: 20px;
-        	font-size: 22px;
-        	line-height: 1.6;
-        	color: white;
-        	box-shadow: 0 0 20px rgba(255, 105, 180, 0.7);
-        	max-width: 600px;
-        	text-align: center;
-   	 }
-	</style>
+        .contenido {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: calc(100vh - 120px);
+            padding: 40px;
+            box-sizing: border-box;
+        }
 
+        .caja-texto {
+            background: linear-gradient(135deg, #ffb300, #ffd54f);
+            padding: 25px;
+            border-radius: 20px;
+            font-size: 22px;
+            line-height: 1.6;
+            color: white;
+            box-shadow: 0 0 20px rgba(255, 179, 0, 0.7);
+            max-width: 600px;
+            text-align: center;
+        }
+    </style>
 </head>
 <body>
 
