@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Festival</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+
+<style>
+body {
+    background: linear-gradient(135deg, #ff4da6, #ff99cc, #ff66b2);
+    margin: 0;
+    font-family: Arial;
+}
+.titulo-principal {text-align:center; padding:30px;}
+.titulo-principal h1 {font-family:'Bebas Neue'; font-size:90px; color:white;}
+
+.login, .entrada {text-align:center; margin:20px;}
+input, select, button {padding:10px; margin:5px; border-radius:10px; border:none}
+button {background:#00ff88; cursor:pointer; font-weight:bold}
+#error {color:red}
+
+.botones {
+    position: sticky;
+    top:0;
+    display:flex;
+    justify-content:center;
+    gap:10px;
+    padding:10px;
+    background:rgba(0,0,0,0.7);
+}
+.botones button {background:#fff200}
+
+.seccion {display:none; padding:20px}
+.activo {display:block}
+.seccion > h2:first-child {
+    font-size: 60px;
+    color: white;
+    text-align: center;
+}
+.grid {
+    display:grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px,1fr));
+    gap:15px;
+}
+.card {
+    background:linear-gradient(135deg,#fff200,#ffd000);
+    border-radius:15px;
+    text-align:center;
+    padding:10px;
+}
+.card img {
+    width:100%;
+    height:100px;
+    object-fit:cover;
+    border-radius:10px;
+}
+
+#detallesEntrada {
+    display:none;
+    background:rgba(0,0,0,0.5);
+    padding:15px;
+    border-radius:10px;
+    margin:20px;
+}
+.qr {display:none; text-align:center}
+.codigo {
+    background:black;
+    color:#00ff88;
+    padding:15px;
+    border-radius:10px;
+}
+
+#staff {
+    display:none;
+    text-align:center;
+    background:rgba(0,0,0,0.4);
+    padding:20px;
+    margin:20px;
+    border-radius:10px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="titulo-principal">
+    <h1>🔥 FESTIVAL 2026 🔥</h1>
+</div>
+
+<!-- LOGIN -->
+<div class="login">
+    <input id="user" placeholder="Usuario">
+    <input id="pass" type="password" placeholder="Contraseña">
+    <button onclick="login()">Entrar</button>
+    <p id="error"></p>
+</div>
+
+<!-- COMPRA -->
+<div class="entrada" id="zonaCompra">
+<h2>🎟️ Comprar entrada</h2>
+
+<select id="tipoDias">
+<option value="2">2 días (50€)</option>
+<option value="4">4 días (80€)</option>
+</select>
+
+<br>
+
+<label><input type="checkbox" id="camping"> Camping (+20%)</label>
+<label><input type="checkbox" id="vip"> VIP (+20%)</label>
+<label><input type="checkbox" id="premium"> Premium (+20%)</label>
+
+<br>
+
+<button onclick="comprarEntrada()">Comprar</button>
+<p id="estadoEntrada">❌ No comprada</p>
+</div>
+
+<div id="detallesEntrada"></div>
+
+<div id="qr" class="qr">
+<h2>🎫 Tu entrada</h2>
+<div class="codigo">FESTIVAL-2026-OK</div>
+</div>
+
+<!-- STAFF -->
+<div id="staff">
+<h2>👑 Panel de Staff</h2>
+<p>Zona privada (vacía de momento)</p>
+</div>
+
+<!-- BOTONES DIAS -->
+<div class="botones">
+<button onclick="mostrarDia(1)">Día 1</button>
+<button onclick="mostrarDia(2)">Día 2</button>
+<button onclick="mostrarDia(3)">Día 3</button>
+<button onclick="mostrarDia(4)">Día 4</button>
+</div>
+
+<!-- DIA 1 -->
+<div id="dia1" class="seccion activo">
+<h2>🎤 Día 1</h2>
+<h2>🇪🇸 Española</h2>
+<div class="grid">
+<div class="card"><img src="https://picsum.photos/200?1"><p>Taburete</p></div>
+<div class="card"><img src="https://picsum.photos/200?2"><p>Dani Fernández</p></div>
+<div class="card"><img src="https://picsum.photos/200?3"><p>Antonio Orozco</p></div>
+<div class="card"><img src="https://picsum.photos/200?4"><p>Celtas Cortos</p></div>
+</div>
+
+<h2>🌍 Pop internacional</h2>
+            <div class="grid">
+                <div class="card"><img src="https://picsum.photos/200?7"><p>Bastille</p></div>
+                <div class="card"><img src="https://picsum.photos/200?8"><p>KSI</p></div>
+                <div class="card"><img src="https://picsum.photos/200?9"><p>Shawn Mendes</p></div>
+                <div class="card"><img src="https://picsum.photos/200?10"><p>Sia</p></div>
+                <div class="card"><img src="https://picsum.photos/200?11"><p>Calvin Harris</p></div>
+            </div>
+
+            <h2>🔥 Reggaetón</h2>
+            <div class="grid">
+                <div class="card"><img src="https://picsum.photos/200?12"><p>Omar Courtz</p></div>
+                <div class="card"><img src="https://picsum.photos/200?13"><p>Myke Towers</p></div>
+                <div class="card"><img src="https://picsum.photos/200?14"><p>Emilia</p></div>
+                <div class="card"><img src="https://picsum.photos/200?15"><p>Duki</p></div>
+            </div>
+
+            <h2>🎧 Tecno</h2>
+            <div class="grid">
+                <div class="card"><img src="https://picsum.photos/200?16"><p>Marco Carola</p></div>
+                <div class="card"><img src="https://picsum.photos/200?17"><p>Charlotte de Witte</p></div>
+                <div class="card"><img src="https://picsum.photos/200?18"><p>Richie Hawtin</p></div>
+                <div class="card"><img src="https://picsum.photos/200?19"><p>Disclosure</p></div>
+            </div>
+</div>
+
+<!-- DIA 2 -->
+<div id="dia2" class="seccion">
+<h2>🎤 Día 2</h2>
+<h2>🇪🇸 Española</h2>
+            <div class="grid">
+                <div class="card"><img src="https://picsum.photos/200?20"><p>Hombres G</p></div>
+                <div class="card"><img src="https://picsum.photos/200?21"><p>Estopa</p></div>
+                <div class="card"><img src="https://picsum.photos/200?22"><p>Dani Martín</p></div>
+                <div class="card"><img src="https://picsum.photos/200?23"><p>La Oreja de Van Gogh</p></div>
+            </div>
+
+            <h2>🌊 Valenciana</h2>
+            <div class="grid">
+                <div class="card"><img src="https://picsum.photos/200?24"><p>Figa Flawas</p></div>
+                <div class="card"><img src="https://picsum.photos/200?25"><p>Fúmiga</p></div>
+            </div>
+
+            <h2>🌍 Pop internacional</h2>
+            <div class="grid">
+                <div class="card"><img src="https://picsum.photos/200?26"><p>Maroon 5</p></div>
+                <div class="card"><img src="https://picsum.photos/200?27"><p>One Direction</p></div>
+                <div class="card"><img src="https://picsum.photos/200?28"><p>Justin Bieber</p></div>
+                <div class="card"><img src="https://picsum.photos/200?29"><p>Black Eyed Peas</p></div>
+            </div>
+
+            <h2>🔥 Reggaetón</h2>
+            <div class="grid">
+                <div class="card"><img src="https://picsum.photos/200?30"><p>Feid</p></div>
+                <div class="card"><img src="https://picsum.photos/200?31"><p>Ozuna</p></div>
+                <div class="card"><img src="https://picsum.photos/200?32"><p>Maluma</p></div>
+                <div class="card"><img src="https://picsum.photos/200?33"><p>Anuel AA</p></div>
+            </div>
+
+            <h2>🎧 Tecno</h2>
+            <div class="grid">
+                <div class="card"><img src="https://picsum.photos/200?34"><p>Claptone</p></div>
+                <div class="card"><img src="https://picsum.photos/200?35"><p>Carl Cox</p></div>
+                <div class="card"><img src="https://picsum.photos/200?36"><p>Solomun</p></div>
+                <div class="card"><img src="https://picsum.photos/200?37"><p>Maceo Plex</p></div>
+            </div>
+</div>
+
+<!-- DIA 3 -->
+<div id="dia3" class="seccion">
+<h2>🎤 Día 3</h2>
+<h2>🇪🇸 Española</h2>
+    <div class="grid">
+        <div class="card"><img src="https://picsum.photos/200?50"><p>Melendi</p></div>
+        <div class="card"><img src="https://picsum.photos/200?51"><p>Aitana</p></div>
+        <div class="card"><img src="https://picsum.photos/200?52"><p>Alejandro Sanz</p></div>
+        <div class="card"><img src="https://picsum.photos/200?53"><p>Mónica Naranjo</p></div>
+    </div>
+
+    <h2>🌊 Valenciana</h2>
+    <div class="grid">
+        <div class="card"><img src="https://picsum.photos/200?54"><p>Oques Grasses</p></div>
+        <div class="card"><img src="https://picsum.photos/200?55"><p>La Gossa Sorda</p></div>
+    </div>
+
+    <h2>🌍 Pop internacional</h2>
+    <div class="grid">
+        <div class="card"><img src="https://picsum.photos/200?56"><p>Bruno Mars</p></div>
+        <div class="card"><img src="https://picsum.photos/200?57"><p>Dua Lipa</p></div>
+        <div class="card"><img src="https://picsum.photos/200?58"><p>The Weeknd</p></div>
+        <div class="card"><img src="https://picsum.photos/200?59"><p>Eminem</p></div>
+    </div>
+
+    <h2>🔥 Reggaetón</h2>
+    <div class="grid">
+        <div class="card"><img src="https://picsum.photos/200?60"><p>Karol G</p></div>
+        <div class="card"><img src="https://picsum.photos/200?61"><p>Rauw Alejandro</p></div>
+        <div class="card"><img src="https://picsum.photos/200?62"><p>Quevedo</p></div>
+        <div class="card"><img src="https://picsum.photos/200?63"><p>Rels B</p></div>
+    </div>
+
+    <h2>🎧 Tecno</h2>
+    <div class="grid">
+        <div class="card"><img src="https://picsum.photos/200?64"><p>TheFatRat</p></div>
+        <div class="card"><img src="https://picsum.photos/200?65"><p>Black Coffee</p></div>
+        <div class="card"><img src="https://picsum.photos/200?66"><p>Adam Beyer</p></div>
+        <div class="card"><img src="https://picsum.photos/200?67"><p>Vicetone</p></div>
+    </div>
+</div>
+
+<!-- DIA 4 -->
+<div id="dia4" class="seccion">
+<h2>🎤 Día 4</h2>
+<h2>🇪🇸 Española</h2>
+    <div class="grid">
+        <div class="card"><img src="https://picsum.photos/200?70"><p>Raphael</p></div>
+        <div class="card"><img src="https://picsum.photos/200?71"><p>Julio Iglesias</p></div>
+        <div class="card"><img src="https://picsum.photos/200?72"><p>Enrique Iglesias</p></div>
+        <div class="card"><img src="https://picsum.photos/200?73"><p>David Bisbal</p></div>
+    </div>
+
+    <h2>🌊 Valenciana</h2>
+    <div class="grid">
+        <div class="card"><img src="https://picsum.photos/200?74"><p>ZOO</p></div>
+        <div class="card"><img src="https://picsum.photos/200?75"><p>El Diluvi</p></div>
+    </div>
+
+    <h2>🌍 Pop internacional</h2>
+    <div class="grid">
+        <div class="card"><img src="https://picsum.photos/200?76"><p>Coldplay</p></div>
+        <div class="card"><img src="https://picsum.photos/200?77"><p>Taylor Swift</p></div>
+        <div class="card"><img src="https://picsum.photos/200?78"><p>Beyoncé</p></div>
+        <div class="card"><img src="https://picsum.photos/200?79"><p>Kanye West</p></div>
+        <div class="card"><img src="https://picsum.photos/200?80"><p>Ariana Grande</p></div>
+    </div>
+
+    <h2>🔥 Reggaetón</h2>
+    <div class="grid">
+        <div class="card"><img src="https://picsum.photos/200?81"><p>Daddy Yankee</p></div>
+        <div class="card"><img src="https://picsum.photos/200?82"><p>Rosalía</p></div>
+        <div class="card"><img src="https://picsum.photos/200?83"><p>Shakira</p></div>
+    </div>
+
+    <h2>🎧 Tecno</h2>
+    <div class="grid">
+        <div class="card"><img src="https://picsum.photos/200?84"><p>1nonly</p></div>
+        <div class="card"><img src="https://picsum.photos/200?85"><p>SXMBRA</p></div>
+        <div class="card"><img src="https://picsum.photos/200?86"><p>Kordhell</p></div>
+    </div>
+</div>
+
+<script>
+let entradaData = JSON.parse(localStorage.getItem("entrada"));
+
+function mostrarDia(n){
+ document.querySelectorAll('.seccion').forEach(s=>s.classList.remove('activo'));
+ document.getElementById('dia'+n).classList.add('activo');
+}
+
+function comprarEntrada(){
+ let dias = document.getElementById("tipoDias").value;
+ let precio = dias=="2"?50:80;
+ let extras=[];
+
+ if(camping.checked){precio*=1.2; extras.push("Camping")}
+ if(vip.checked){precio*=1.2; extras.push("VIP")}
+ if(premium.checked){precio*=1.2; extras.push("Premium")}
+
+ entradaData={dias,extras,precio:precio.toFixed(2)};
+ localStorage.setItem("entrada",JSON.stringify(entradaData));
+
+ document.getElementById("estadoEntrada").innerText="✅ Entrada comprada";
+}
+
+function mostrarStaff(){
+ document.getElementById("zonaCompra").style.display="none";
+ document.getElementById("detallesEntrada").style.display="none";
+ document.getElementById("qr").style.display="none";
+ document.getElementById("staff").style.display="block";
+}
+
+function mostrarUsuario(){
+ document.getElementById("zonaCompra").style.display="block";
+ document.getElementById("staff").style.display="none";
+}
+
+function login(){
+ let userInput = document.getElementById("user").value;
+ let passInput = document.getElementById("pass").value;
+
+ if(userInput=="root" && passInput=="root"){
+  document.getElementById("error").innerText="👑 Bienvenido staff";
+  mostrarStaff();
+ }
+ else if(userInput=="espectador" && passInput=="hepagado" && entradaData){
+  document.getElementById("error").innerText="🎉 Entrada válida";
+  mostrarUsuario();
+  document.getElementById("qr").style.display="block";
+  mostrarDetalles();
+ }
+ else if(userInput=="espectador" && passInput=="hepagado" && !entradaData){
+  document.getElementById("error").innerText="❌ No has comprado entrada";
+  mostrarUsuario();
+ }
+ else{
+  document.getElementById("error").innerText="❌ Datos incorrectos";
+ }
+}
+
+function mostrarDetalles(){
+ let div=document.getElementById("detallesEntrada");
+ div.style.display="block";
+ div.innerHTML=`
+ <h2>🎫 Detalles</h2>
+ <p>Días: ${entradaData.dias}</p>
+ <p>Extras: ${entradaData.extras.join(', ')||'Ninguno'}</p>
+ <p>Precio: ${entradaData.precio}€</p>`;
+}
+</script>
+
+</body>
+</html>
