@@ -102,14 +102,15 @@ button {background:#00ff88; cursor:pointer; font-weight:bold}
 <h2>🎟️ Comprar entrada</h2>
 
 <select id="tipoDias">
-<option value="2">2 días (50€)</option>
-<option value="4">4 días (80€)</option>
+<option value="1">1 día (400€)</option>
+<option value="2">2 días (650€)</option>
+<option value="4">4 días (1200€)</option>
 </select>
 
 <br>
 
-<label><input type="checkbox" id="camping"> Camping (+20%)</label>
-<label><input type="checkbox" id="vip"> VIP (+20%)</label>
+<label><input type="checkbox" id="camping"> Camping (+5%)</label>
+<label><input type="checkbox" id="vip"> VIP (+10%)</label>
 <label><input type="checkbox" id="premium"> Premium (+20%)</label>
 
 <br>
@@ -311,11 +312,13 @@ function mostrarDia(n){
 
 function comprarEntrada(){
  let dias = document.getElementById("tipoDias").value;
- let precio = dias=="2"?50:80;
+let precio = dias == "1" ? 400 :
+             dias == "2" ? 650 :
+             dias == "4" ? 1200 : 0;
  let extras=[];
 
- if(camping.checked){precio*=1.2; extras.push("Camping")}
- if(vip.checked){precio*=1.2; extras.push("VIP")}
+ if(camping.checked){precio*=1.05; extras.push("Camping")}
+ if(vip.checked){precio*=1.1; extras.push("VIP")}
  if(premium.checked){precio*=1.2; extras.push("Premium")}
 
  entradaData={dias,extras,precio:precio.toFixed(2)};
