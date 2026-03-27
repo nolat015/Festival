@@ -113,6 +113,19 @@ button {background:#00ff88; cursor:pointer; font-weight:bold}
 <label><input type="checkbox" id="vip"> VIP (+10%)</label>
 <label><input type="checkbox" id="premium"> Premium (+20%)</label>
 
+<script>
+  document.getElementById("vip").addEventListener("change", function() {
+    if (this.checked) {
+      document.getElementById("premium").checked = false;
+    }
+  });
+
+  document.getElementById("premium").addEventListener("change", function() {
+    if (this.checked) {
+      document.getElementById("vip").checked = false;
+    }
+  });
+</script>
 <br>
 
 <button onclick="comprarEntrada()">Comprar</button>
