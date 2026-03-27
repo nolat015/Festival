@@ -114,17 +114,22 @@ button {background:#00ff88; cursor:pointer; font-weight:bold}
 <label><input type="checkbox" id="premium"> Premium (+20%)</label>
 
 <script>
-  document.getElementById("vip").addEventListener("change", function() {
+document.addEventListener("DOMContentLoaded", function() {
+  const vip = document.getElementById("vip");
+  const premium = document.getElementById("premium");
+
+  vip.addEventListener("change", function() {
     if (this.checked) {
-      document.getElementById("premium").checked = false;
+      premium.checked = false;
     }
   });
 
-  document.getElementById("premium").addEventListener("change", function() {
+  premium.addEventListener("change", function() {
     if (this.checked) {
-      document.getElementById("vip").checked = false;
+      vip.checked = false;
     }
   });
+});
 </script>
 <br>
 
